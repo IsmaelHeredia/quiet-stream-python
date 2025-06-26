@@ -1,0 +1,31 @@
+Screen {
+    padding: 2;
+    width: 100%;
+    height: 100%;
+}
+
+#main_content_area {
+    layout: vertical;
+    align: center middle;
+    width: 100%;
+    height: 100%;
+}
+
+#botonera {
+    layout: vertical;
+    align: center middle;
+    width: 100%;
+}
+
+#botonera > Button {
+    width: 24;
+    margin: 1;
+}
+
+#author_info {
+    text-align: center;
+    padding: 1;
+    color: gray;
+    width: 100%;
+    margin-top: 2;
+}
