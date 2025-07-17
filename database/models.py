@@ -5,16 +5,10 @@ import os
 from sqlmodel import Field, SQLModel, create_engine, Session, select
 from typing import Optional
 from contextlib import contextmanager
-import logging
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('debug.log'),
-        logging.StreamHandler()
-    ]
-)
+import logging
+from utils.config_manager import ENABLE_DEBUG_LOGGING
+
 logger = logging.getLogger(__name__)
 
 class Stream(SQLModel, table=True):
@@ -30,7 +24,7 @@ sqlite_url = f"sqlite:///{DB_PATH}"
 
 engine = create_engine(
     sqlite_url,
-    echo=True,
+    echo=False,
     connect_args={"check_same_thread": False},
     pool_pre_ping=True
 )

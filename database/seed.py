@@ -3,16 +3,10 @@
 
 from database.models import Stream, get_session, create_db_and_tables
 from sqlmodel import select
-import logging
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('debug.log'),
-        logging.StreamHandler()
-    ]
-)
+import logging
+from utils.config_manager import ENABLE_DEBUG_LOGGING
+
 logger = logging.getLogger(__name__)
 
 DEFAULT_STREAMS = [

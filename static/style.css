@@ -1,5 +1,5 @@
 Screen {
-    padding: 2;
+    padding: 0;
     width: 100%;
     height: 100%;
 }
@@ -8,7 +8,72 @@ Screen {
     layout: vertical;
     align: center middle;
     width: 100%;
-    height: 100%;
+    height: 1fr;
+    padding: 1 2;
+}
+
+#search_bar_container {
+    width: 80%;
+    height: auto;
+    padding: 1;
+    align: center middle;
+}
+
+.search-label {
+    width: auto;
+    margin-right: 1;
+    margin-top: 1; 
+}
+
+.search-input {
+    width: 1fr;
+    margin-right: 1;
+}
+
+.search-button {
+    width: auto;
+    min-width: 8;
+}
+
+Static#placeholder {
+    width: 80%;
+    text-align: center;
+    margin-bottom: 1;
+}
+
+DataTable {
+    width: 80%;
+    height: 1fr;
+    max-height: 70%;
+    min-height: 5;
+    overflow-y: scroll;
+    margin-bottom: 1;
+}
+
+Footer {
+    height: auto;
+    padding: 1 2;
+    layout: horizontal;
+    align: center middle;
+}
+
+#playback_controls_in_footer {
+    layout: horizontal;
+    align: center middle;
+    width: auto;
+    margin-right: 2;
+}
+
+.control-button, .volume-button {
+    height: auto;
+    width: auto;
+    padding: 0 1;
+    margin: 0 1;
+}
+
+Footer .t-button {
+    height: auto;
+    padding: 0 1;
 }
 
 #botonera {
@@ -18,8 +83,14 @@ Screen {
 }
 
 #botonera > Button {
-    width: 24;
+    width: 30;
     margin: 1;
+    text-style: bold;
+    align-horizontal: center;
+    align-vertical: middle;
+}
+
+#admin_btn {
 }
 
 #author_info {
@@ -28,4 +99,14 @@ Screen {
     color: gray;
     width: 100%;
     margin-top: 2;
+}
+
+Static#screen_title {
+    height: auto;
+    dock: top;
+    color: $text;
+    background: $surface;
+    padding: 0 2;
+    text-align: center;
+    text-style: bold;
 }

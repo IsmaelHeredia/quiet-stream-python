@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Quiet Stream 1.0
+# pip install textual
+# pip install sqlmodel
 # Written by Ismael Heredia
 
 from textual.app import App, ComposeResult
@@ -13,15 +15,8 @@ from database.models import create_db_and_tables
 from database.seed import seed_data
 
 import logging
+from utils.config_manager import ENABLE_DEBUG_LOGGING
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('debug.log'),
-        logging.StreamHandler()
-    ]
-)
 logger = logging.getLogger(__name__)
 
 class StreamPlayerApp(App):
@@ -35,14 +30,15 @@ class StreamPlayerApp(App):
         except Exception as e:
             logger.critical(f"Error inicial: {e}")
             self.exit(message=f"Error crítico: {e}")
+        self.set_focus(None) 
 
     def compose(self) -> ComposeResult:
         yield Header()
         yield Container(
             Container(
-                Button("Administrar Streams", id="admin_btn", variant="primary"),
-                Button("Reproductor", id="player_btn", variant="success"),
-                Button("Salir", id="exit_btn", variant="error"),
+                Button("💻 Gestor de Streams", id="admin_btn", variant="primary"),
+                Button("🎵 Reproductor", id="player_btn", variant="success"),
+                Button("🛑 Salir", id="exit_btn", variant="error"),
                 id="botonera"
             ),
             Static("Desarrollado por: Ismael Heredia", id="author_info"),
