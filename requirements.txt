@@ -1,5 +1,5 @@
-textual
-sqlmodel
-python-vlc
-yt-dlp
-httpx
+textual>=6.1.0,<7.0.0
+sqlmodel>=0.0.24
+python-vlc>=3.0.21203
+yt-dlp>=2026.08.19
+httpx>=0.28.1,<1.0.0

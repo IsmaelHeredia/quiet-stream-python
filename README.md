@@ -1,64 +1,76 @@
 # Quiet Stream
 
-Esta es una aplicación de Interfaz de Usuario de Terminal (TUI) diseñada para ayudar a gestionar y reproducir tus streams y videos favoritos. Construida con Textual, SQLModel, SQLite y python-vlc, ofrece una forma sencilla y potente de interactuar con tu contenido multimedia directamente desde tu terminal.
+Aplicación TUI (Terminal User Interface) para gestionar y reproducir streams de audio y videos, construida con Textual, SQLModel, SQLite, python-vlc, yt-dlp y httpx.
 
-## Funciones principales : 
+## Funciones principales
 
-- Gestión de streams y videos: Agrega, edita y elimina tus entradas de streams y videos.
-
-- Reproducción integrada: Reproduce streams de audio y videos de plataformas como YouTube directamente en la terminal.
-
-- Control de Reproducción: Controles para reproducir, pausar, detener, avanzar y retroceder entre tus contenidos.
-
-- Categorización flexible: Organiza tu contenido asignándole una o varias categorías.
-
-- Interfaz de Usuario Intuitiva: Navega y gestiona tu contenido con una interfaz limpia y amigable basada en Textual.
-
-- Persistencia de Datos: Tus datos se guardan de forma segura en una base de datos SQLite local.
+- **Gestión de streams y videos:** agregar, editar y eliminar entradas.
+- **Reproducción integrada:** streams de audio (URL directa) y videos (YouTube y similares vía yt-dlp).
+- **Controles de reproducción:** anterior, siguiente, detener y volumen.
+- **Búsqueda y filtros:** por nombre y por categoría.
+- **Importar / exportar JSON:** backup y carga de listas, con omisión automática de duplicados por nombre o link.
+- **Validación de enlaces:** comprueba si los streams responden; permite detener el proceso, seleccionar cuáles eliminar y confirmar.
+- **Temas Gruvbox Light / Dark:** se alternan con `Ctrl+T` y la preferencia se guarda entre sesiones.
+- **Interfaz responsive:** tablas y menú se adaptan al tamaño de la terminal.
+- **Persistencia local:** los datos se guardan en SQLite (`streams.db`).
 
 ## Capturas de pantalla
 
-A continuación, se muestran algunas imágenes del programa en funcionamiento:
+![screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPFY7MSTCl-KopzEj2gOkpwuYLDuiAXIsuKEoi-6cloZ2VN2OmBQYv_E2dHfvXN7Z7ITOUY7wwLQz0Poi73-ddpn4MnKdJnnUh_UL_F1T8c5u-UgKaR8LKHDhTvyAD0ThiQUY_R3QgqYQOfzoMnQqFVOAXXYA7hyphenhyphenPwbL3Mj6hp0rpeceQQlJ_zNkmM_Zw/s1148/1.png)
 
-![screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhxaMq4llntag73k0AKVQUOHdgi9nMJCpQuezSgJghyEcbikYuccz0m6a2o5eF-qu22rO5q6FrdDpGaYXDsW8QfFzxyQg5q56sfCMnAYadlLej7fOraOEuC8mKkS4WD3HH5n4RUPdtc11koC1iTUq0A0WsL0A4-408k5v7Bgxch9lO3iXm4pVipg_ZJ3UQ/s1112/1.png)
+![screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOg8Jx-DVtQHIgNlV9FD2PkyRKR7yFMVS42ypP5_QViF53Vly7MRvIDbcp9t2gA3i1z70YUF2OziHo20NYXvZebbUomikx188m9s4cdybJAIgK9VIz2ytMXjNMg6vAX1VGN0xNB96yNYzSqBDLc6J31O9j0yYbiSxxIZGtmaJhsFLc_Wu8rm1MbwIkK5Y/s1147/2.png)
 
-![screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhs5Y4aqwUYdckCo5xdh630GlFsQYjtnDvMdhvavupbcnGndn_yKgU1zp_ITdvy88RIIAvpjE9Y-OZlrSqUnK-ZKgmwX2US8pmOYFJdk3Z-9zctKjsqp0KqeFmkO5tDg4rO9HFLwkQ1Y6DyvE-BmVNOHA3I3UWFLPGdgHOeWm04OgP11FpNti4_yorVmh8/s1110/2.png)
+![screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiysszR-maurY4A4KGsO2CcD3K02LTYaaaIkdfZ-0KvWDA6TOvlkedrTtiZWhyWflHmYg13fQgTAws4kvJfpiJT4cX_KpMf9BVTWsskhyphenhyphenEuR2_XX2JKsvXKC5NP2BIzcFLB-5ly3VMKkFkl-SChLZenTD1WuM9HUXEZU0sbXBlaN7E_uCL88GnQRdzd0D8/s1146/3.png)
 
-![screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcBUmvHaKalrqnlhLuFfozBht9TVe6_yc-O9XdIk1BXJNvBS8PfwSiWNvF63qhKnsy4sYpQ2PqTqHtEjS75ynWJJdpHsJIopfDrqaYLooZ18AIRhA3pNXnVtzI7TSB16eAo5hyWf_f_09U7a8oPXoQ0sEFPw42TQT17E1Izlv5iWyOITLS9XdjFLbpvaE/s1110/3.png)
+![screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnOj9Scz-KW5iaNpl0UZmDMV9H_Pi7WI9J6gZ_Vj0H3H4ddMn1rReAqDJ5hgkIeNy2vgGY9Ts5P0uSLAxiH1p5YxlnlNueptkYV5Wn-BfjzEm-XS18iq0lsnhAbsni9LoKoW9Zgukgh4DmZuGzBuexQ7IUIYf8aOLFu2YcqY_3k5kdgbOvhX2eShZ5_6E/s1145/4.png)
+
+![screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjb1HZsKt9WffFz4rfl2i5SayQO36ELQs8v2zz82KqttOZlC18xIowCXDoLgpEli9bLLHt9ijFRbuOG78iByfJEc7xZsHtQav93crlsUAFJUcqOfL5_sh2ogXCPuXWVYYA5_Wlfs6xi355nWAPFqdLkg7lO1AnbPgGX_KdeMR_vk50YD6UaNbqC-BnCmTU/s1143/5.png)
+
+![screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8r8QYBtEqT_JAQiwM8P7qiki2rxjogRl06kRBiadGc4sBEXyqrhrZlmOT5OmieuwrFMvS5ygvrK7Z0sx8yNfoVnJR6F_wYjyX2E5J3c15-7bxjjVGk2YszrokNeL8A0bJRorqcYlUymxtf7cAXMWg-G2RK4SZvmg5fRkkAyWINtlug3aoZKxOmHj5i_8/s1139/6.png)
+
+## Requisitos
+
+- **Python 3.8+**
+- **VLC Media Player** instalado en el sistema ([videolan.org](https://www.videolan.org/vlc/))
 
 ## Instalación
 
-Se necesitan seguir estos pasos para poner en marcha Quiet Stream en tu sistema:
+1. Clonar el repositorio:
 
-1. Requisitos Previos:
+   ```bash
+   git clone https://github.com/IsmaelHeredia/quiet-stream-python.git
+   cd quiet-stream-python
+   ```
 
-* **Python 3.8+**
-* **VLC Media Player:** Necesitas tener VLC instalado en tu sistema, ya que `python-vlc` actúa como una interfaz para él. Puedes descargarlo directamente desde [videolan.org](https://www.videolan.org/vlc/).
+2. Instalar dependencias:
 
-2. Clona el repositorio:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```
-git clone https://github.com/IsmaelHeredia/quiet-stream-python.git
-```
+3. Ejecutar:
 
-```
-cd quiet-stream-python
-```
+   ```bash
+   python main.py
+   ```
 
-3. Instala las dependencias:
+## Importación y exportación (Formato JSON)
 
-```
-pip install -r requirements.txt
-```
+Los respaldos exportados utilizan una lista con la siguiente estructura por cada elemento, la cual también se requiere para importar datos:
 
-4. Inicializa la base de datos:
-
-El archivo streams.db y las tablas necesarias se crearán automáticamente la primera vez que inicies la aplicación.
-
-5. Ejecución:
-
-Para iniciar la aplicación, ejecuta el siguiente comando en tu terminal:
-
-```
-python main.py
+```json
+[
+  {
+    "nombre": "Mi stream",
+    "link": "https://ejemplo.com/stream.mp3",
+    "categorias": "rock, radio",
+    "tipo": "stream"
+  },
+  {
+    "nombre": "Video de ejemplo",
+    "link": "https://www.youtube.com/watch?v=...",
+    "categorias": "musica",
+    "tipo": "video"
+  }
+]
 ```

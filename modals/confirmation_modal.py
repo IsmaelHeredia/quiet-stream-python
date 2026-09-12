@@ -6,6 +6,7 @@ from textual.screen import ModalScreen
 from textual.containers import Horizontal
 from textual.widgets import Static, Button
 
+
 class ConfirmationModal(ModalScreen[bool]):
 
     CSS = """
@@ -31,6 +32,9 @@ class ConfirmationModal(ModalScreen[bool]):
         margin-left: 1;
         margin-right: 1;
     }
+    ConfirmationModal Button:focus {
+        text-style: bold;
+    }
     """
 
     def __init__(self, message: str):
@@ -46,6 +50,6 @@ class ConfirmationModal(ModalScreen[bool]):
     def compose(self) -> ComposeResult:
         yield Static(self.message, classes="modal-title")
         yield Horizontal(
-            Button("✅ Sí", id="confirm", variant="error"),
-            Button("⛔ No", id="cancel")
+            Button("Sí", id="confirm", variant="error"),
+            Button("No", id="cancel", variant="primary"),
         )

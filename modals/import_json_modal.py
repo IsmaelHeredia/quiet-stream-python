@@ -5,7 +5,7 @@ from textual.app import ComposeResult
 from textual.containers import Horizontal
 from textual.widgets import Static, Input, Button, Label
 from textual.screen import ModalScreen
-from textual import on
+
 
 class ImportJsonModal(ModalScreen[str | None]):
     CSS = """
@@ -31,6 +31,13 @@ class ImportJsonModal(ModalScreen[str | None]):
         margin-top: 1;
         align: center middle;
     }
+    ImportJsonModal Button {
+        margin-left: 1;
+        margin-right: 1;
+    }
+    ImportJsonModal Button:focus {
+        text-style: bold;
+    }
     """
 
     def compose(self) -> ComposeResult:
@@ -38,15 +45,17 @@ class ImportJsonModal(ModalScreen[str | None]):
         yield Label("Ruta del archivo JSON:")
         yield Input(id="file_path_input", placeholder="Ej: /ruta/a/streams.json")
         yield Horizontal(
-            Button("📥 Importar", id="import_file", variant="primary"),
-            Button("❌ Cancelar", id="cancel")
+            Button("Importar", id="import_file", variant="success"),
+            Button("Cancelar", id="cancel", variant="primary"),
         )
 
     async def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "import_file":
             file_path = self.query_one("#file_path_input", Input).value.strip()
             if not file_path:
-                self.notify("La ruta del archivo no puede estar vacía", severity="error")
+                self.notify(
+                    "La ruta del archivo no puede estar vacía", severity="error"
+                )
                 return
             self.dismiss(file_path)
         elif event.button.id == "cancel":
